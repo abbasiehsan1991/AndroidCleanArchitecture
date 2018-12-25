@@ -1,14 +1,14 @@
-package codenevisha.com.cleanarchitecture.di
+package codenevisha.com.cleanarchitecture.di.builder
 
 import android.arch.lifecycle.ViewModelProvider
-import codenevisha.com.cleanarchitecture.ui.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 
-@Module(includes = [
-    (RepositoryBuilder::class),
-    (AppViewModelBuilder::class)
-])
+@Module(
+    includes = [
+        (AppViewModelBuilder::class)
+    ]
+)
 abstract class ViewModelBuilder {
 
     @Binds

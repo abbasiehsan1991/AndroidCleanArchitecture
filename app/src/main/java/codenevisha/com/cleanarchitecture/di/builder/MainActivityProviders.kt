@@ -1,4 +1,4 @@
-package codenevisha.com.cleanarchitecture.di
+package codenevisha.com.cleanarchitecture.di.builder
 
 import codenevisha.com.cleanarchitecture.ui.HomeFragment
 import dagger.Module

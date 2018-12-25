@@ -1,17 +1,16 @@
 package codenevisha.com.cleanarchitecture.core
 
-import android.app.Application
-import android.content.Context
-import android.support.multidex.MultiDex
+import codenevisha.com.cleanarchitecture.di.component.DaggerCoreComponent
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 
-class App :Application(){
+class App : DaggerApplication() {
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
 
-    override fun onCreate() {
-        super.onCreate()
+        return DaggerCoreComponent
+            .builder()
+            .application(this)
+            .build()
     }
 
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-        MultiDex.install(this)
-    }
 }
