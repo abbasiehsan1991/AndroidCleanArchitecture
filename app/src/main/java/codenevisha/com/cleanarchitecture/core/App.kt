@@ -13,4 +13,8 @@ class App : DaggerApplication() {
             .build()
     }
 
+    override fun onCreate() {
+        super.onCreate()
+    }
+
 }

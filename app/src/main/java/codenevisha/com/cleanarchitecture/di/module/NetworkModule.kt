@@ -1,9 +1,9 @@
 package codenevisha.com.cleanarchitecture.di.module
 
 import codenevisha.com.cleanarchitecture.data.restful.ApiService
-import codenevisha.com.cleanarchitecture.BaseCloudRepository
-import codenevisha.com.cleanarchitecture.CloudRepository
+import codenevisha.com.cleanarchitecture.data.BaseCloudRepository
 import codenevisha.com.cleanarchitecture.core.Config
+import codenevisha.com.cleanarchitecture.data.CloudRepository
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -75,6 +75,4 @@ class NetworkModule {
     fun provideRepository(apiService: ApiService): BaseCloudRepository {
         return CloudRepository(apiService)
     }
-
-
 }

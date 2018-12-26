@@ -1,7 +1,7 @@
 package codenevisha.com.cleanarchitecture.di.builder
 
 
-import codenevisha.com.cleanarchitecture.ui.MainActivity
+import codenevisha.com.cleanarchitecture.presenter.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

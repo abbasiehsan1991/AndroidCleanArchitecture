@@ -1,7 +1,7 @@
 package codenevisha.com.cleanarchitecture.di.builder
 
 import android.arch.lifecycle.ViewModel
-import codenevisha.com.cleanarchitecture.ui.HomeViewModel
+import codenevisha.com.cleanarchitecture.presenter.HomeViewModel
 import codenevisha.com.cleanarchitecture.di.qualifier.ViewModelKey
 import dagger.Binds
 import dagger.Module
