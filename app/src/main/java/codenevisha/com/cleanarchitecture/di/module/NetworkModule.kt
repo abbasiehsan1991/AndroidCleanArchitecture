@@ -4,6 +4,7 @@ import codenevisha.com.cleanarchitecture.data.restful.ApiService
 import codenevisha.com.cleanarchitecture.data.BaseCloudRepository
 import codenevisha.com.cleanarchitecture.core.Config
 import codenevisha.com.cleanarchitecture.data.CloudRepository
+import codenevisha.com.cleanarchitecture.domain.model.ArticleModel
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -16,6 +17,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 
+
 @Module
 class NetworkModule {
 
@@ -26,7 +28,7 @@ class NetworkModule {
         rxJava2CallAdapterFactory: RxJava2CallAdapterFactory,
         okHttpClient: OkHttpClient
     ): Retrofit {
-        return Retrofit.Builder().baseUrl(Config.BASE_URL)
+        return Retrofit.Builder().baseUrl(Config.API_BASE_URL)
             .addConverterFactory(gsonConverterFactory)
             .addCallAdapterFactory(rxJava2CallAdapterFactory)
             .client(okHttpClient)
@@ -37,6 +39,7 @@ class NetworkModule {
     @Singleton
     fun providesOkHttpClient(): OkHttpClient {
         val client = OkHttpClient.Builder()
+            //  .cache(cache)
             .connectTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
@@ -71,8 +74,16 @@ class NetworkModule {
         return retrofit.create(ApiService::class.java)
     }
 
+
     @Provides
-    fun provideRepository(apiService: ApiService): BaseCloudRepository {
-        return CloudRepository(apiService)
+    fun provideCloudRepository(apIs: ApiService): BaseCloudRepository {
+        return CloudRepository(apIs)
     }
+
+    @Provides
+    fun provideArticleModel(): ArticleModel {
+        return ArticleModel()
+    }
+
+
 }

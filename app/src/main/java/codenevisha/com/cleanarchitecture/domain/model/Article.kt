@@ -10,7 +10,9 @@ data class ArticleModel(
     @SerializedName("status") var status: String?,
     @SerializedName("totalResults") var totalResults: Int?,
     @SerializedName("articles") var articles: MutableList<Article>?
-)
+){
+    constructor():this(null , null , null)
+}
 
 @Entity
 data class Article(

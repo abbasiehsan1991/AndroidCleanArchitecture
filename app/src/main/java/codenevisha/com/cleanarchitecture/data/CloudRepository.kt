@@ -9,6 +9,6 @@ import javax.inject.Inject
 class CloudRepository @Inject constructor(val api:ApiService): BaseCloudRepository {
 
     override fun getArticles(): Single<ArticleModel> {
-    return  api.getArticles(Config.API_USER_TOKEN)
+    return  api.getArticles()
     }
 }

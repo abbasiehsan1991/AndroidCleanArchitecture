@@ -1,5 +1,6 @@
 package codenevisha.com.cleanarchitecture.domain.usecase.base
 
+import android.util.Log
 import codenevisha.com.cleanarchitecture.data.CloudErrorMapper
 import codenevisha.com.cleanarchitecture.domain.model.ErrorModel
 import codenevisha.com.cleanarchitecture.domain.model.ErrorResponse
@@ -12,6 +13,8 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 abstract class SingleUseCase<T>(val errorUtil: CloudErrorMapper) : UseCase<Single<T>>() {
+
+    val TAG = SingleUseCase::class.java.simpleName
 
     fun execute(
 
@@ -26,12 +29,14 @@ abstract class SingleUseCase<T>(val errorUtil: CloudErrorMapper) : UseCase<Singl
             .subscribe(
 
                 {
+                    Log.d(TAG, "On Response[${it.toString()}]")
                     onResponse(SuccessResponse(it))
                 },
                 {
+                    Log.d(TAG, "On Error [${it}]")
                     val error: ErrorModel = errorUtil.mapToDomainErrorException(it)
 
-                    onResponse(ErrorResponse(error))
+                    //onResponse(ErrorResponse(error))
                 }
 
             ).also { compositeDisposable.add(it) }

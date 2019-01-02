@@ -1,39 +1,55 @@
 package codenevisha.com.cleanarchitecture.presenter
 
 import android.util.Log
+import codenevisha.com.cleanarchitecture.R
 import codenevisha.com.cleanarchitecture.domain.model.ArticleModel
 import codenevisha.com.cleanarchitecture.domain.model.ErrorResponse
 import codenevisha.com.cleanarchitecture.domain.model.SuccessResponse
 import codenevisha.com.cleanarchitecture.domain.model.UseCaseResponse
-import codenevisha.com.cleanarchitecture.domain.usecase.ArticleUseCase
-import codenevisha.com.cleanarchitecture.presenter.base.BaseViewmodel
+import codenevisha.com.cleanarchitecture.domain.usecase.base.GetHomeUseCase
+import codenevisha.com.cleanarchitecture.presenter.base.BaseViewModel
+import codenevisha.com.cleanarchitecture.presenter.util.ELog
 import javax.inject.Inject
 
 
 class HomeViewModel @Inject constructor(
-  private val articleUseCase: ArticleUseCase
-) : BaseViewmodel() {
+    private val getHomeUseCase: GetHomeUseCase
+) : BaseViewModel() {
 
-    val TAG = HomeViewModel::class.java.simpleName
+    companion object {
+        val TAG = HomeViewModel::class.java.simpleName
+    }
 
     init {
-        Log.d(TAG , "INITIALIZED HOME VIEW MODEL")
+        Log.d(TAG, "INITIALIZED HOME VIEW MODEL :0")
+
+        empty.value = true
+        loadingData.value = true
+
     }
 
     override fun onStart() {
-      articleUseCase.execute(compositeDisposable, this::articleResponse)
+        getHomeUseCase.execute(compositeDisposable, this::articleResponse)
     }
 
     private fun articleResponse(response: UseCaseResponse<ArticleModel>) {
 
+        loadingData.value = false
+
         when (response) {
 
-            is SuccessResponse ->
-                Log.d(TAG, "SUCCESS RESPONSE [${response.value}]")
+            is SuccessResponse -> {
 
-            is ErrorResponse ->
-                Log.d(TAG, "Error RESPONSE  [${response.error}]")
+                ELog.d(TAG, "RESPONSE size [${response.value.articles?.size}]")
+                empty.value = response.value.articles?.isNullOrEmpty()!!
+            }
 
+            is ErrorResponse -> {
+
+
+                mSnackBarText.value = R.string.error_faild_get_data
+
+            }
         }
     }
 

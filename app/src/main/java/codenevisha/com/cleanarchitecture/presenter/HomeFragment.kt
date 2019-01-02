@@ -1,33 +1,36 @@
 package codenevisha.com.cleanarchitecture.presenter
 
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import codenevisha.com.cleanarchitecture.R
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
 
-class HomeFragment : DaggerFragment() {
+import android.arch.lifecycle.Observer
+import android.widget.Toast
+import codenevisha.com.cleanarchitecture.R
+import codenevisha.com.cleanarchitecture.databinding.FragmentHomeBinding
+import codenevisha.com.cleanarchitecture.presenter.base.BaseFragment
+
+class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     companion object {
         val CLASS_NAME = HomeFragment::class.java.simpleName
     }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    /**
+     * Resource Id of main layout for view
+     */
+    override val layoutId: Int = R.layout.fragment_home
 
-    private val viewmodel: HomeViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
+    override fun onViewInitialized(binding: FragmentHomeBinding) {
+        super.onViewInitialized(binding)
+
+        binding.viewmodel = viewModel
+        viewModel.onStart()
+
+        with(viewModel){
+
+            loadingData.observe(this@HomeFragment  , Observer {
+                Toast.makeText(activity , "Vale is [$loadingData]"  , Toast.LENGTH_SHORT).show()
+            })
+        }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
 
-        lifecycle.addObserver(viewmodel)
-        //viewmodel.onStart()
-        return root
-    }
 }
