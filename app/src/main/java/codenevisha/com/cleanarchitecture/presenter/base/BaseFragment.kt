@@ -11,12 +11,14 @@ import android.view.ViewGroup
 import dagger.android.support.DaggerFragment
 import dagger.android.support.HasSupportFragmentInjector
 import java.lang.reflect.ParameterizedType
+import javax.inject.Inject
 
 abstract class BaseFragment<V : BaseViewModel, B : ViewDataBinding> : DaggerFragment(), BaseView<V, B>,
     HasSupportFragmentInjector {
 
     override lateinit var binding: B
 
+    @Inject
     override lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override val viewModel: V by lazy {
@@ -32,11 +34,15 @@ abstract class BaseFragment<V : BaseViewModel, B : ViewDataBinding> : DaggerFrag
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
 
         binding.setLifecycleOwner(this)
-
+        lifecycle.addObserver(viewModel)
         viewModel.onStart()
 
         return binding.root
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        onViewInitialized(binding)
+    }
 }
