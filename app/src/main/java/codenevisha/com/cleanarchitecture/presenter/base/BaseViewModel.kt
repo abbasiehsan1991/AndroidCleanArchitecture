@@ -9,7 +9,7 @@ import io.reactivex.disposables.CompositeDisposable
 abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     val compositeDisposable = CompositeDisposable()
-    val loadingData = MutableLiveData<Boolean>()
+    val isLoadingData = MutableLiveData<Boolean>()
     val empty = MutableLiveData<Boolean>()
     val mSnackBarText = SnackbarMessage()
 

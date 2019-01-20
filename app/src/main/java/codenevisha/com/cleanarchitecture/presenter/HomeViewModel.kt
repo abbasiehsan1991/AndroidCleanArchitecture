@@ -1,11 +1,9 @@
 package codenevisha.com.cleanarchitecture.presenter
 
+import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import codenevisha.com.cleanarchitecture.R
-import codenevisha.com.cleanarchitecture.domain.model.ArticleModel
-import codenevisha.com.cleanarchitecture.domain.model.ErrorResponse
-import codenevisha.com.cleanarchitecture.domain.model.SuccessResponse
-import codenevisha.com.cleanarchitecture.domain.model.UseCaseResponse
+import codenevisha.com.cleanarchitecture.domain.model.*
 import codenevisha.com.cleanarchitecture.domain.usecase.base.GetHomeUseCase
 import codenevisha.com.cleanarchitecture.presenter.base.BaseViewModel
 import codenevisha.com.cleanarchitecture.presenter.util.ELog
@@ -15,16 +13,17 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getHomeUseCase: GetHomeUseCase
 ) : BaseViewModel() {
-
     companion object {
         val TAG = HomeViewModel::class.java.simpleName
     }
+
+    val articles = MutableLiveData<MutableList<Article>>()
 
     init {
         Log.d(TAG, "INITIALIZED HOME VIEW MODEL :0")
 
         empty.value = true
-        loadingData.value = true
+        isLoadingData.value = true
 
     }
 
@@ -34,7 +33,7 @@ class HomeViewModel @Inject constructor(
 
     private fun articleResponse(response: UseCaseResponse<ArticleModel>) {
 
-        loadingData.value = false
+        isLoadingData.value = false
 
         when (response) {
 
@@ -42,10 +41,13 @@ class HomeViewModel @Inject constructor(
 
                 ELog.d(TAG, "RESPONSE size [${response.value.articles?.size}]")
                 empty.value = response.value.articles?.isNullOrEmpty()!!
+
+                response.value.articles?.let {
+                    articles.value = it
+                }
             }
 
             is ErrorResponse -> {
-
 
                 mSnackBarText.value = R.string.error_faild_get_data
 
