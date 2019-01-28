@@ -29,19 +29,8 @@ class  HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         binding.viewmodel = viewModel
         viewModel.onStart()
 
-        with(viewModel){
+        prepareRvHome()
 
-            articles.observe(this@HomeFragment , Observer {
-                Log.d(TAG , "articles [${it?.size}]")
-            })
-
-            isLoadingData.observe(this@HomeFragment  , Observer {
-                Toast.makeText(activity , "Vale is [$isLoadingData]"  , Toast.LENGTH_SHORT).show()
-            })
-
-            prepareRvHome()
-
-        }
     }
 
     private fun prepareRvHome(){

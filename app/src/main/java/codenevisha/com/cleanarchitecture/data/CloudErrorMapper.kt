@@ -24,13 +24,13 @@ class CloudErrorMapper @Inject constructor() {
                 when {
 
                     //handle UNAUTHORIZED situation (when token expired)
-                    throwable.code() == 401 -> ErrorModel(ErrorStatus.UNAUTHORIZED)
+                    throwable.code() == 401 -> ErrorModel("Unauthorized Error", 401, ErrorStatus.UNAUTHORIZED)
 
                     //handle Sending wrong request situation
-                    throwable.code() == 400 -> ErrorModel(ErrorStatus.BAD_RESPONSE)
+                    throwable.code() == 400 -> ErrorModel("Bad Request Error", 400, ErrorStatus.BAD_RESPONSE)
 
                     //handle interval server error situation
-                    throwable.code() == 500 -> ErrorModel(ErrorStatus.INTERVAL_ERROR)
+                    throwable.code() == 500 -> ErrorModel("Internal server Error", 500, ErrorStatus.INTERVAL_ERROR)
 
                     else -> getHttpError(throwable.response().errorBody())
                 }
@@ -38,12 +38,12 @@ class CloudErrorMapper @Inject constructor() {
 
             // handle api call timeout error
             is SocketTimeoutException -> {
-                ErrorModel(ErrorStatus.TIMEOUT)
+                ErrorModel("Time out", null, ErrorStatus.TIMEOUT)
             }
 
             // handle connection error
             is IOException -> {
-                ErrorModel(ErrorStatus.NO_CONNECTION)
+                ErrorModel("No connection", null, ErrorStatus.NO_CONNECTION)
             }
 
             else -> null
@@ -69,12 +69,12 @@ class CloudErrorMapper @Inject constructor() {
 
             val json = Gson().fromJson(result, JsonObject::class.java)
 
-            ErrorModel(json.toString(), null , ErrorStatus.BAD_RESPONSE)
+            ErrorModel(json.toString(), null, ErrorStatus.BAD_RESPONSE)
 
         } catch (e: Throwable) {
 
             e.printStackTrace()
-            ErrorModel(ErrorStatus.NOT_DEFINED)
+            ErrorModel(null, null, ErrorStatus.NOT_DEFINED)
 
         }
     }

@@ -3,7 +3,7 @@ package codenevisha.com.cleanarchitecture.presenter.base
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import codenevisha.com.cleanarchitecture.presenter.SnackbarMessage
+import codenevisha.ir.mvvmwithdagger.ui.SnackbarMessage
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseViewModel : ViewModel(), LifecycleObserver {

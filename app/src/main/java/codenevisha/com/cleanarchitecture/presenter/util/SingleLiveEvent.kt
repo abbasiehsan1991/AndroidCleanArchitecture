@@ -1,4 +1,4 @@
-package codenevisha.com.cleanarchitecture.presenter
+package codenevisha.com.cleanarchitecture.presenter.util
 
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData

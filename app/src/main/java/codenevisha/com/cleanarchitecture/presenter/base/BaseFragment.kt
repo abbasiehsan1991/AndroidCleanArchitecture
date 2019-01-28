@@ -5,9 +5,12 @@ import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
+import android.support.annotation.StringRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import codenevisha.ir.mvvmwithdagger.ui.SnackbarMessage
+import codenevisha.ir.mvvmwithdagger.ui.SnackbarUtils
 import dagger.android.support.DaggerFragment
 import dagger.android.support.HasSupportFragmentInjector
 import java.lang.reflect.ParameterizedType
@@ -37,12 +40,39 @@ abstract class BaseFragment<V : BaseViewModel, B : ViewDataBinding> : DaggerFrag
         lifecycle.addObserver(viewModel)
         viewModel.onStart()
 
+
+
         return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         onViewInitialized(binding)
+
+        setupSnakbar()
+
+    }
+
+    private fun setupSnakbar() {
+        viewModel.mSnackBarText.observe(this, object : SnackbarMessage.SnackbarObserver {
+            /**
+             * Called when there is a new message to be shown.
+             * @param snackbarMessageResourceId The new message, non-null.
+             */
+            override fun onNewMessage(snackbarMessageResourceId: Int) {
+
+                SnackbarUtils.showSnackbar(view, getString(snackbarMessageResourceId))
+
+            }
+
+            override fun onNewMessage(message: String) {
+
+                SnackbarUtils.showSnackbar(view, message)
+
+            }
+
+        })
     }
 }

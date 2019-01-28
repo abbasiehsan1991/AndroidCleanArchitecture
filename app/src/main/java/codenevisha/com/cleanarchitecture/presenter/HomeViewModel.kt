@@ -2,7 +2,6 @@ package codenevisha.com.cleanarchitecture.presenter
 
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
-import codenevisha.com.cleanarchitecture.R
 import codenevisha.com.cleanarchitecture.domain.model.*
 import codenevisha.com.cleanarchitecture.domain.usecase.home.GetHomeUseCase
 import codenevisha.com.cleanarchitecture.presenter.base.BaseViewModel
@@ -18,6 +17,7 @@ class HomeViewModel @Inject constructor(
     }
 
     val articles = MutableLiveData<MutableList<Article>>()
+    val errorModel = MutableLiveData<ErrorModel>()
 
     init {
         Log.d(TAG, "INITIALIZED HOME VIEW MODEL :0")
@@ -49,7 +49,12 @@ class HomeViewModel @Inject constructor(
 
             is ErrorResponse -> {
 
-                mSnackBarText.value = R.string.error_faild_get_data
+                errorModel.value = response.error
+
+                response.error.message?.let {
+
+                    mSnackBarText.value = it
+                }
 
             }
         }

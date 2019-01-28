@@ -9,12 +9,14 @@ import javax.inject.Inject
 
 class GetHomeUseCase @Inject constructor(
 
-    errorUtil: CloudErrorMapper, //
+    errorUtil: CloudErrorMapper,
     private val appRepository: AppRepository //AppRepository interface
 
 ) : SingleUseCase<ArticleModel>(errorUtil) {
 
     override fun execute(): Single<ArticleModel> {
+
         return appRepository.getArticles()
+
     }
 }

@@ -3,6 +3,7 @@ package codenevisha.com.cleanarchitecture.domain.usecase
 import android.util.Log
 import codenevisha.com.cleanarchitecture.data.CloudErrorMapper
 import codenevisha.com.cleanarchitecture.domain.model.ErrorModel
+import codenevisha.com.cleanarchitecture.domain.model.ErrorResponse
 import codenevisha.com.cleanarchitecture.domain.model.SuccessResponse
 import codenevisha.com.cleanarchitecture.domain.model.UseCaseResponse
 import codenevisha.com.cleanarchitecture.domain.usecase.base.BaseUseCase
@@ -12,9 +13,9 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-abstract class SingleUseCase<T>(val errorUtil: CloudErrorMapper) : BaseUseCase<Single<T>>() {
+abstract class SingleUseCase<T>(private val errorUtil: CloudErrorMapper) : BaseUseCase<Single<T>>() {
 
-    val TAG = SingleUseCase::class.java.simpleName
+    private val TAG = SingleUseCase::class.java.simpleName
 
     fun execute(
 
@@ -32,13 +33,18 @@ abstract class SingleUseCase<T>(val errorUtil: CloudErrorMapper) : BaseUseCase<S
                     Log.d(TAG, "On Response[${it.toString()}]")
                     onResponse(SuccessResponse(it))
                 },
+
                 {
-                    Log.d(TAG, "On Error [${it}]")
+
+                    Log.d(TAG, "On Error [$it]")
+
                     val error: ErrorModel = errorUtil.mapToDomainErrorException(it)
 
-                    //onResponse(ErrorResponse(error))
+                    onResponse(ErrorResponse(error))
                 }
 
-            ).also { compositeDisposable.add(it) }
+            ).also {
+                compositeDisposable.add(it)
+            }
     }
 }
