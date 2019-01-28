@@ -1,6 +1,6 @@
 package codenevisha.com.cleanarchitecture.domain.usecase.base
 
-abstract class UseCase<T> {
+abstract class BaseUseCase<T> {
 
     abstract fun execute():T
 

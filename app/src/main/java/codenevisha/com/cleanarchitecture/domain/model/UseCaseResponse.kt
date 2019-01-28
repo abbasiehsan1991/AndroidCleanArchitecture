@@ -3,7 +3,7 @@ package  codenevisha.com.cleanarchitecture.domain.model
 
 
 /**
- * base sealed class for handling UseCase responses in [BaseUseCase]
+ * base sealed class for handling BaseUseCase responses in [BaseUseCase]
  * @see [BaseUseCase]
  */
 sealed class UseCaseResponse<out T>

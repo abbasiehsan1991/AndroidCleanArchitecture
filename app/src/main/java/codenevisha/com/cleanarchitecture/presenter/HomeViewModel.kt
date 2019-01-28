@@ -4,7 +4,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import codenevisha.com.cleanarchitecture.R
 import codenevisha.com.cleanarchitecture.domain.model.*
-import codenevisha.com.cleanarchitecture.domain.usecase.base.GetHomeUseCase
+import codenevisha.com.cleanarchitecture.domain.usecase.home.GetHomeUseCase
 import codenevisha.com.cleanarchitecture.presenter.base.BaseViewModel
 import codenevisha.com.cleanarchitecture.presenter.util.ELog
 import javax.inject.Inject

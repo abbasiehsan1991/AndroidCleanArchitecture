@@ -11,7 +11,7 @@ import codenevisha.com.cleanarchitecture.domain.model.Article
 import codenevisha.com.cleanarchitecture.presenter.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
+class  HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     companion object {
         val CLASS_NAME = HomeFragment::class.java.simpleName

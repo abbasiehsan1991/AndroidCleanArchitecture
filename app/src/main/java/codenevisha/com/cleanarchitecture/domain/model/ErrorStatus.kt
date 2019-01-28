@@ -9,6 +9,10 @@ enum class ErrorStatus {
      */
     NO_CONNECTION,
     /**
+     * error in sending request to the server
+     */
+    BAD_REQUEST,
+    /**
      * error in getting value (Json Error, Server Error, etc)
      */
     BAD_RESPONSE,
@@ -20,6 +24,10 @@ enum class ErrorStatus {
      * no data available in repository
      */
     EMPTY_RESPONSE,
+    /**
+     * an interval server error
+     */
+    INTERVAL_ERROR,
     /**
      * an unexpected error
      */

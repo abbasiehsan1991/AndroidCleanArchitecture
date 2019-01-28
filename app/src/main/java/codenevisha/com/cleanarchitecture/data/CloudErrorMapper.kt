@@ -14,16 +14,25 @@ import javax.inject.Inject
 class CloudErrorMapper @Inject constructor() {
 
     fun mapToDomainErrorException(throwable: Throwable?): ErrorModel {
-        val errorModel: ErrorModel? = when (throwable) {
+
+        val errorModel = when (throwable) {
 
             // if throwable is an instance of HttpException
             // then attempt to parse error data from response body
             is HttpException -> {
-                // handle UNAUTHORIZED situation (when token expired)
-                if (throwable.code() == 401) {
-                    ErrorModel(ErrorStatus.UNAUTHORIZED)
-                } else {
-                    getHttpError(throwable.response().errorBody())
+
+                when {
+
+                    //handle UNAUTHORIZED situation (when token expired)
+                    throwable.code() == 401 -> ErrorModel(ErrorStatus.UNAUTHORIZED)
+
+                    //handle Sending wrong request situation
+                    throwable.code() == 400 -> ErrorModel(ErrorStatus.BAD_RESPONSE)
+
+                    //handle interval server error situation
+                    throwable.code() == 500 -> ErrorModel(ErrorStatus.INTERVAL_ERROR)
+
+                    else -> getHttpError(throwable.response().errorBody())
                 }
             }
 
@@ -36,8 +45,10 @@ class CloudErrorMapper @Inject constructor() {
             is IOException -> {
                 ErrorModel(ErrorStatus.NO_CONNECTION)
             }
+
             else -> null
         }
+
         return errorModel!!
     }
 
@@ -48,16 +59,23 @@ class CloudErrorMapper @Inject constructor() {
      * @return returns an instance of [ErrorModel] with parsed data or NOT_DEFINED status
      */
     private fun getHttpError(body: ResponseBody?): ErrorModel {
+
         return try {
+
             // use response body to get error detail
             val result = body?.string()
+
             Log.d("getHttpError", "getErrorMessage() called with: errorBody = [$result]")
+
             val json = Gson().fromJson(result, JsonObject::class.java)
-            ErrorModel(  json.toString(), 400, ErrorStatus.BAD_RESPONSE)
+
+            ErrorModel(json.toString(), null , ErrorStatus.BAD_RESPONSE)
+
         } catch (e: Throwable) {
+
             e.printStackTrace()
             ErrorModel(ErrorStatus.NOT_DEFINED)
-        }
 
+        }
     }
 }
