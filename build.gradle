@@ -25,6 +25,10 @@ buildscript {
     ext.rx_adapter_version = '2.3.0'
     ext.rx_android_version = '2.1.0'
 
+    //Test
+    ext.mokitoVersion = '2.11.0'
+    ext.mokitoKotlinVersion = '1.5.0'
+
     repositories {
         google()
         jcenter()
