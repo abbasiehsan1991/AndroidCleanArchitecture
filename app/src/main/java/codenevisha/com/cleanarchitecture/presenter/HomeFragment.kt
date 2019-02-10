@@ -1,10 +1,6 @@
 package codenevisha.com.cleanarchitecture.presenter
 
-
-import android.arch.lifecycle.Observer
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
-import android.widget.Toast
 import codenevisha.com.cleanarchitecture.R
 import codenevisha.com.cleanarchitecture.databinding.FragmentHomeBinding
 import codenevisha.com.cleanarchitecture.domain.model.Article

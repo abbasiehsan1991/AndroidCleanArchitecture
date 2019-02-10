@@ -1,6 +1,5 @@
 package codenevisha.com.cleanarchitecture.data
 
-import codenevisha.com.cleanarchitecture.core.Config
 import codenevisha.com.cleanarchitecture.data.restful.ApiService
 import codenevisha.com.cleanarchitecture.domain.model.ArticleModel
 import io.reactivex.Single

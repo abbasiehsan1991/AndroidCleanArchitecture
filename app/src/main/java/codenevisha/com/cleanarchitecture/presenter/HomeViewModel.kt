@@ -1,12 +1,16 @@
 package codenevisha.com.cleanarchitecture.presenter
 
 import android.arch.lifecycle.MutableLiveData
+import android.os.Parcelable
 import android.util.Log
+import android.view.View
 import codenevisha.com.cleanarchitecture.domain.model.*
 import codenevisha.com.cleanarchitecture.domain.usecase.home.GetHomeUseCase
 import codenevisha.com.cleanarchitecture.presenter.base.BaseViewModel
 import codenevisha.com.cleanarchitecture.presenter.util.ELog
+import org.junit.internal.runners.statements.InvokeMethod
 import javax.inject.Inject
+import javax.security.auth.callback.Callback
 
 
 class HomeViewModel @Inject constructor(
@@ -28,7 +32,7 @@ class HomeViewModel @Inject constructor(
     }
 
     override fun onStart() {
-        getHomeUseCase.execute(compositeDisposable, this::articleResponse)
+        getHomeUseCase.execute(compositeDisposable, this::articleResponse, TokenExpired())
     }
 
     private fun articleResponse(response: UseCaseResponse<ArticleModel>) {

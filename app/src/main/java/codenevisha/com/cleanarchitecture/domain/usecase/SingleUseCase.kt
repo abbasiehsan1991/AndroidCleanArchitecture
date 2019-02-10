@@ -2,10 +2,7 @@ package codenevisha.com.cleanarchitecture.domain.usecase
 
 import android.util.Log
 import codenevisha.com.cleanarchitecture.data.CloudErrorMapper
-import codenevisha.com.cleanarchitecture.domain.model.ErrorModel
-import codenevisha.com.cleanarchitecture.domain.model.ErrorResponse
-import codenevisha.com.cleanarchitecture.domain.model.SuccessResponse
-import codenevisha.com.cleanarchitecture.domain.model.UseCaseResponse
+import codenevisha.com.cleanarchitecture.domain.model.*
 import codenevisha.com.cleanarchitecture.domain.usecase.base.BaseUseCase
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,14 +10,15 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-abstract class SingleUseCase<T>(private val errorUtil: CloudErrorMapper) : BaseUseCase<Single<T>>() {
+abstract class SingleUseCase<T>(private val cloudErrorMapper: CloudErrorMapper) : BaseUseCase<Single<T>>() {
 
     private val TAG = SingleUseCase::class.java.simpleName
 
     fun execute(
 
         compositeDisposable: CompositeDisposable,
-        onResponse: ((UseCaseResponse<T>) -> Unit)
+        onResponse: ((UseCaseResponse<T>) -> Unit),
+        onTokenExpire: (() -> Unit)? = null
 
     ): Disposable {
 
@@ -38,7 +36,10 @@ abstract class SingleUseCase<T>(private val errorUtil: CloudErrorMapper) : BaseU
 
                     Log.d(TAG, "On Error [$it]")
 
-                    val error: ErrorModel = errorUtil.mapToDomainErrorException(it)
+                    val error: ErrorModel = cloudErrorMapper.mapToDomainErrorException(it)
+
+                    if (ErrorStatus.UNAUTHORIZED == error.errorStatus)
+                        onTokenExpire?.invoke()
 
                     onResponse(ErrorResponse(error))
                 }

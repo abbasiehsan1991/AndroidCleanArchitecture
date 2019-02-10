@@ -1,4 +1,4 @@
-package codenevisha.com.cleanarchitecture.domain
+package codenevisha.com.cleanarchitecture.domain.repository
 
 import codenevisha.com.cleanarchitecture.domain.model.ArticleModel
 import io.reactivex.Single

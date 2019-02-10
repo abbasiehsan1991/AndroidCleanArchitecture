@@ -1,7 +1,7 @@
 package codenevisha.com.cleanarchitecture.data.repository
 
 import codenevisha.com.cleanarchitecture.data.BaseCloudRepository
-import codenevisha.com.cleanarchitecture.domain.AppRepository
+import codenevisha.com.cleanarchitecture.domain.repository.AppRepository
 import codenevisha.com.cleanarchitecture.domain.model.ArticleModel
 import io.reactivex.Single
 import javax.inject.Inject

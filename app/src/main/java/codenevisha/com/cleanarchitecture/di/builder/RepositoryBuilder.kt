@@ -1,7 +1,7 @@
 package codenevisha.com.cleanarchitecture.di.builder
 
 import codenevisha.com.cleanarchitecture.data.repository.AppRepoImp
-import codenevisha.com.cleanarchitecture.domain.AppRepository
+import codenevisha.com.cleanarchitecture.domain.repository.AppRepository
 import dagger.Binds
 import dagger.Module
 

@@ -53,5 +53,6 @@ class BaseBindings {
                     .into(view)
             }
         }
+
     }
 }
