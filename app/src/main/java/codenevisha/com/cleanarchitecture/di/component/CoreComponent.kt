@@ -5,6 +5,7 @@ import codenevisha.com.cleanarchitecture.core.App
 import codenevisha.com.cleanarchitecture.di.builder.ActivityBuilder
 import codenevisha.com.cleanarchitecture.di.module.ContextModule
 import codenevisha.com.cleanarchitecture.di.module.NetworkModule
+import codenevisha.com.cleanarchitecture.di.module.PreferenceModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -13,7 +14,7 @@ import javax.inject.Singleton
 
 
 @Singleton
-@Component(modules = [AndroidSupportInjectionModule::class, NetworkModule::class,  ActivityBuilder::class, ContextModule::class])
+@Component(modules = [AndroidSupportInjectionModule::class, NetworkModule::class,  ActivityBuilder::class, ContextModule::class , PreferenceModule::class])
 interface CoreComponent : AndroidInjector<App> {
 
     @Component.Builder

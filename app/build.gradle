@@ -44,15 +44,12 @@ dependencies {
 
     /*-----------------------/Test Tools\-------------------*/
     testImplementation 'junit:junit:4.12'
-
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
-
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
-    implementation "android.arch.core:core-testing:$roomVersion"
-    testImplementation "org.mockito:mockito-inline:$mokitoVersion"
-    implementation "com.nhaarman:mockito-kotlin-kt1.1:$mokitoKotlinVersion"
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'//Use to test UI
+    implementation "android.arch.core:core-testing:$roomVersion"//Use to test live data in mainThread
+    testImplementation "org.mockito:mockito-inline:$mokitoVersion"//Use to create mock of objects in tests
+    implementation "com.nhaarman:mockito-kotlin-kt1.1:$mokitoKotlinVersion"//Use to create mock of objects in tests
 
 
     /*-----------------------/App's dependencies\-------------------*/
