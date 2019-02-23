@@ -22,7 +22,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
                 android:elevation="10dp"
-                app:cardBackgroundColor="@color/colorDefaultBg"
                 app:cardCornerRadius="5dp"
                 android:padding="2dp"
                 android:layout_margin="8dp">

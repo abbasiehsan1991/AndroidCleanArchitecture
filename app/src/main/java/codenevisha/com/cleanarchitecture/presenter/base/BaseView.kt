@@ -17,7 +17,7 @@ interface BaseView<V : BaseViewModel, B : ViewDataBinding> {
     /**
      * default ViewModel of view, will be initialized by [viewModelFactory]
      */
-    val viewModel: V
+    var viewModel: V
 
     /**
      * Resource Id of main layout for view

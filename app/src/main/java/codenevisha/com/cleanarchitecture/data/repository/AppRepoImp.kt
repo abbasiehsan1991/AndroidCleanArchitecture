@@ -9,8 +9,8 @@ import javax.inject.Inject
 
 class AppRepoImp @Inject constructor(
 
-    val cloudRepository: BaseCloudRepository,
-    val articleModel: ArticleModel
+    private val cloudRepository: BaseCloudRepository,
+    private val articleModel: ArticleModel
 
 ) : AppRepository {
 

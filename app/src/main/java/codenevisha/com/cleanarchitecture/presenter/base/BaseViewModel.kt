@@ -15,8 +15,6 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     val mSnackBarText = SnackbarMessage()
 
     companion object {
-
-
         private val TAG = BaseViewModel::class.java.simpleName.toString()
     }
 

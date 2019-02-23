@@ -12,6 +12,7 @@ open class DefaultPreference(private val name: String) {
     }
 
     fun getValue(keyName: String, defaultValue: Any): Any = with(preferences) {
+
         when (defaultValue) {
             is Long -> getLong(keyName, defaultValue)
             is String -> getString(keyName, defaultValue)
@@ -20,6 +21,7 @@ open class DefaultPreference(private val name: String) {
             is Float -> getFloat(keyName, defaultValue)
             else -> throw IllegalArgumentException("Type not Allowed to save, Try primitive types.")
         }
+
     }
 
     fun putValue(keyName: String, value: Any) = with(preferences.edit()) {

@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-
+//binowire
 
 android {
     compileSdkVersion 28
@@ -26,7 +26,7 @@ android {
         }
     }
 
-    dataBinding{
+    dataBinding {
         enabled = true
     }
 
@@ -41,7 +41,6 @@ dependencies {
     /*-----------------------/Kotlin\-------------------*/
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-
     /*-----------------------/Test Tools\-------------------*/
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -50,7 +49,6 @@ dependencies {
     implementation "android.arch.core:core-testing:$roomVersion"//Use to test live data in mainThread
     testImplementation "org.mockito:mockito-inline:$mokitoVersion"//Use to create mock of objects in tests
     implementation "com.nhaarman:mockito-kotlin-kt1.1:$mokitoKotlinVersion"//Use to create mock of objects in tests
-
 
     /*-----------------------/App's dependencies\-------------------*/
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
@@ -80,7 +78,7 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-    kapt  "com.google.dagger:dagger-android-support:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-support:$daggerVersion"
 
     /*-----------------------/ RX \-------------------*/
     implementation "io.reactivex.rxjava2:rxjava:$rx_version"

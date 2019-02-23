@@ -3,6 +3,7 @@ package codenevisha.com.cleanarchitecture.di.component
 import android.app.Application
 import codenevisha.com.cleanarchitecture.core.App
 import codenevisha.com.cleanarchitecture.di.builder.ActivityBuilder
+import codenevisha.com.cleanarchitecture.di.builder.ViewModelBuilder
 import codenevisha.com.cleanarchitecture.di.module.ContextModule
 import codenevisha.com.cleanarchitecture.di.module.NetworkModule
 import codenevisha.com.cleanarchitecture.di.module.PreferenceModule
@@ -14,7 +15,16 @@ import javax.inject.Singleton
 
 
 @Singleton
-@Component(modules = [AndroidSupportInjectionModule::class, NetworkModule::class,  ActivityBuilder::class, ContextModule::class , PreferenceModule::class])
+@Component(
+    modules = [
+        AndroidSupportInjectionModule::class,
+        NetworkModule::class,
+        ActivityBuilder::class,
+        ViewModelBuilder::class,
+        ContextModule::class,
+        PreferenceModule::class
+    ]
+)
 interface CoreComponent : AndroidInjector<App> {
 
     @Component.Builder

@@ -10,4 +10,11 @@
     <string name="text_no_url">URL not found!!!</string>
     <string name="text_no_date">date not found!!!</string>
     <string name="error_faild_get_data">Error while loading Data! Please try again later.</string>
+
+
+    <string name="home_title">خانه</string>
+    <string name="favourite_title">علاقه مندی ها</string>
+    <string name="category_title">دسته بندی</string>
+    <string name="profile_title">بروفایل</string>
+
 </resources>

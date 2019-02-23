@@ -1,16 +1,12 @@
-package codenevisha.com.cleanarchitecture.presenter
+package codenevisha.com.cleanarchitecture.presenter.home
 
 import android.arch.lifecycle.MutableLiveData
-import android.os.Parcelable
 import android.util.Log
-import android.view.View
 import codenevisha.com.cleanarchitecture.domain.model.*
 import codenevisha.com.cleanarchitecture.domain.usecase.home.GetHomeUseCase
 import codenevisha.com.cleanarchitecture.presenter.base.BaseViewModel
 import codenevisha.com.cleanarchitecture.presenter.util.ELog
-import org.junit.internal.runners.statements.InvokeMethod
 import javax.inject.Inject
-import javax.security.auth.callback.Callback
 
 
 class HomeViewModel @Inject constructor(

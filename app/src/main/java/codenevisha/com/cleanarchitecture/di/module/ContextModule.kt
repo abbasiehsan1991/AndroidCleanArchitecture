@@ -2,13 +2,12 @@ package codenevisha.com.cleanarchitecture.di.module
 
 import android.app.Application
 import android.content.Context
-import codenevisha.com.cleanarchitecture.di.builder.ViewModelBuilder
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
 
-@Module(includes = [ViewModelBuilder::class])
+@Module
 class ContextModule {
 
     @Provides

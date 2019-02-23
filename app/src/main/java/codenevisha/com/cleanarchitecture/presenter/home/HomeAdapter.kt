@@ -1,4 +1,4 @@
-package codenevisha.com.cleanarchitecture.presenter
+package codenevisha.com.cleanarchitecture.presenter.home
 
 import android.databinding.ViewDataBinding
 import android.support.v7.widget.RecyclerView

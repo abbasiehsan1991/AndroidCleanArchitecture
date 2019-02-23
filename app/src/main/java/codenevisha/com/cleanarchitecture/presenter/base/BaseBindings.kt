@@ -4,7 +4,7 @@ import android.databinding.BindingAdapter
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.widget.ImageView
-import codenevisha.com.cleanarchitecture.presenter.HomeAdapter
+import codenevisha.com.cleanarchitecture.presenter.home.HomeAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
