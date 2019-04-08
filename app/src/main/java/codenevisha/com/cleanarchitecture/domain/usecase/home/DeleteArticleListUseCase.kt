@@ -7,7 +7,7 @@ import codenevisha.com.cleanarchitecture.domain.usecase.SingleUseCase
 import io.reactivex.Single
 import javax.inject.Inject
 
-class GetArticleUseCase @Inject constructor(
+class DelteArticleListUseCase @Inject constructor(
 
     private val errorUtil: CloudErrorMapper,
     private val appRepository: AppRepository //AppRepository interface
