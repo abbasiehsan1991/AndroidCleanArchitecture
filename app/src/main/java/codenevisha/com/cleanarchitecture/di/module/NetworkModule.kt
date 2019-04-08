@@ -1,6 +1,6 @@
 package codenevisha.com.cleanarchitecture.di.module
 
-import codenevisha.com.cleanarchitecture.data.restful.ApiService
+import codenevisha.com.cleanarchitecture.data.source.cloud.ApiService
 import codenevisha.com.cleanarchitecture.data.BaseCloudRepository
 import codenevisha.com.cleanarchitecture.core.Config
 import codenevisha.com.cleanarchitecture.data.CloudRepository

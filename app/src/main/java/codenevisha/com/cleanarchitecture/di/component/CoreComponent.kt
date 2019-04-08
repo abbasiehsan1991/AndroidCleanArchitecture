@@ -5,6 +5,7 @@ import codenevisha.com.cleanarchitecture.core.App
 import codenevisha.com.cleanarchitecture.di.builder.ActivityBuilder
 import codenevisha.com.cleanarchitecture.di.builder.ViewModelBuilder
 import codenevisha.com.cleanarchitecture.di.module.ContextModule
+import codenevisha.com.cleanarchitecture.di.module.DatabaseModule
 import codenevisha.com.cleanarchitecture.di.module.NetworkModule
 import codenevisha.com.cleanarchitecture.di.module.PreferenceModule
 import dagger.BindsInstance
@@ -19,6 +20,7 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
         NetworkModule::class,
+        DatabaseModule::class,
         ActivityBuilder::class,
         ViewModelBuilder::class,
         ContextModule::class,

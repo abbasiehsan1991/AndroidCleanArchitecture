@@ -16,6 +16,7 @@ data class ArticleModel(
 
 @Entity
 data class Article(
+
     @PrimaryKey(autoGenerate = true)
     var id: Long,
 

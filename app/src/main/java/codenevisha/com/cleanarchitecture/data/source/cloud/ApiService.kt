@@ -1,4 +1,4 @@
-package codenevisha.com.cleanarchitecture.data.restful
+package codenevisha.com.cleanarchitecture.data.source.cloud
 
 import codenevisha.com.cleanarchitecture.domain.model.ArticleModel
 import io.reactivex.Single

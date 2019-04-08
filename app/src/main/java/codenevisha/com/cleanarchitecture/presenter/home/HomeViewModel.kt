@@ -3,14 +3,14 @@ package codenevisha.com.cleanarchitecture.presenter.home
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import codenevisha.com.cleanarchitecture.domain.model.*
-import codenevisha.com.cleanarchitecture.domain.usecase.home.GetHomeUseCase
+import codenevisha.com.cleanarchitecture.domain.usecase.home.GetArticleListUseCase
 import codenevisha.com.cleanarchitecture.presenter.base.BaseViewModel
 import codenevisha.com.cleanarchitecture.presenter.util.ELog
 import javax.inject.Inject
 
 
 class HomeViewModel @Inject constructor(
-    private val getHomeUseCase: GetHomeUseCase
+    private val getArticleListUseCase: GetArticleListUseCase
 ) : BaseViewModel() {
     companion object {
         val TAG = HomeViewModel::class.java.simpleName
@@ -28,7 +28,7 @@ class HomeViewModel @Inject constructor(
     }
 
     override fun onStart() {
-        getHomeUseCase.execute(compositeDisposable, this::articleResponse, TokenExpired())
+        getArticleListUseCase.execute(compositeDisposable, this::articleResponse, TokenExpired())
     }
 
     private fun articleResponse(response: UseCaseResponse<ArticleModel>) {

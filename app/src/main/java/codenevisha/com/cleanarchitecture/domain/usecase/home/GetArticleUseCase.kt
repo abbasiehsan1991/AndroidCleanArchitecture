@@ -7,7 +7,7 @@ import codenevisha.com.cleanarchitecture.domain.usecase.SingleUseCase
 import io.reactivex.Single
 import javax.inject.Inject
 
-class GetHomeUseCase @Inject constructor(
+class GetArticleUseCase @Inject constructor(
 
     private val errorUtil: CloudErrorMapper,
     private val appRepository: AppRepository //AppRepository interface
@@ -15,8 +15,6 @@ class GetHomeUseCase @Inject constructor(
 ) : SingleUseCase<ArticleModel>(errorUtil) {
 
     override fun execute(): Single<ArticleModel> {
-
         return appRepository.getArticles()
-
     }
 }
