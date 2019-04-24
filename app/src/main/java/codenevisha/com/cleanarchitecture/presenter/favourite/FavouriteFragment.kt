@@ -12,6 +12,11 @@ import javax.inject.Inject
  *
  */
 class FavouriteFragment @Inject constructor() :BaseFragment<FavouriteViewModel,FragmentFavouriteBinding>() {
+    companion object {
+        val CLASS_NAME = FavouriteFragment::class.java.simpleName
+        private val TAG  = FavouriteFragment::class.java.simpleName
+    }
+
 
     @Inject
     lateinit var favouriteViewModel: FavouriteViewModel
@@ -21,20 +26,17 @@ class FavouriteFragment @Inject constructor() :BaseFragment<FavouriteViewModel,F
      */
     override lateinit var viewModel: FavouriteViewModel
 
-    companion object {
-        val CLASS_NAME = FavouriteFragment::class.java.simpleName
-        private val TAG  = FavouriteFragment::class.java.simpleName
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = favouriteViewModel
-    }
 
     /**
      * Resource Id of main layout for view
      */
     override val layoutId: Int = R.layout.fragment_favourite
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = favouriteViewModel
+    }
 
 
     override fun onViewInitialized(binding: FragmentFavouriteBinding) {

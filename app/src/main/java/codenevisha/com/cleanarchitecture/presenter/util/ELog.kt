@@ -5,52 +5,58 @@ import codenevisha.com.cleanarchitecture.BuildConfig
 
 object ELog {
 
-    fun v(tag: String, message: String, onlyDebug: Boolean) {
+    val TAG = ELog::class.java.simpleName
 
-        if (onlyDebug) {
+    enum class Level {
+        V,
+        D,
+        E,
+        W,
+        I,
+        A
+    }
 
-            if (BuildConfig.DEBUG)
-                Log.v(tag, message)
+    fun print(
+        _Level: Level = ELog.Level.D,
+        message: String
+    ) {
+        printLog(_Level, TAG, message, true)
+    }
 
-        } else {
+    fun print(
+        _Level: Level = ELog.Level.D,
+        tag: String = TAG,
+        message: String,
+        onlyDebug: Boolean = true
+    ) {
 
-            Log.v(tag, message)
+        printLog(_Level, tag, message, onlyDebug)
+
+    }
+
+    private fun printLog(
+        _Level: Level = ELog.Level.D,
+        tag: String = TAG,
+        message: String,
+        onlyDebug: Boolean = true
+    ) {
+
+        if (onlyDebug && !BuildConfig.DEBUG)
+            return
+
+        when (_Level) {
+
+            ELog.Level.V -> Log.v(tag, message)
+
+            ELog.Level.D -> Log.d(tag, message)
+
+            ELog.Level.E -> Log.e(tag, message)
+
+            ELog.Level.I -> Log.i(tag, message)
+
+            ELog.Level.W -> Log.w(tag, message)
+
         }
-
     }
-
-    fun d(tag: String, message: String, onlyDebug: Boolean = true) {
-
-        if (onlyDebug) {
-
-            if (BuildConfig.DEBUG)
-                Log.d(tag, message)
-
-        } else
-            Log.d(tag, message)
-    }
-
-    fun w(tag: String, message: String, onlyDebug: Boolean=true) {
-
-        if (onlyDebug) {
-
-            if (BuildConfig.DEBUG)
-                Log.w(tag, message)
-
-        } else
-            Log.w(tag, message)
-    }
-
-    fun e(tag: String, message: String, onlyDebug: Boolean = true) {
-
-        if (onlyDebug) {
-
-            if (BuildConfig.DEBUG)
-                Log.e(tag, message)
-
-        } else
-            Log.e(tag, message)
-    }
-
-
 }
+

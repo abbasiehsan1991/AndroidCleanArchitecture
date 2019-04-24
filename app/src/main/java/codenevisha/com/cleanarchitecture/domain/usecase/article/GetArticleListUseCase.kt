@@ -1,4 +1,4 @@
-package codenevisha.com.cleanarchitecture.domain.usecase.home
+package codenevisha.com.cleanarchitecture.domain.usecase.article
 
 import codenevisha.com.cleanarchitecture.data.CloudErrorMapper
 import codenevisha.com.cleanarchitecture.domain.repository.AppRepository
@@ -7,7 +7,7 @@ import codenevisha.com.cleanarchitecture.domain.usecase.SingleUseCase
 import io.reactivex.Single
 import javax.inject.Inject
 
-class DelteArticleListUseCase @Inject constructor(
+class GetArticleListUseCase @Inject constructor(
 
     private val errorUtil: CloudErrorMapper,
     private val appRepository: AppRepository //AppRepository interface

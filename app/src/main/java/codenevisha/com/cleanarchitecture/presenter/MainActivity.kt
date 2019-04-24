@@ -13,7 +13,10 @@ import javax.inject.Inject
 class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
-    lateinit var homeFragment: HomeFragment
+    lateinit var mainNavigator: MainNavigator
+
+    @Inject
+    lateinit var homeFragment:HomeFragment
 
     @Inject
     lateinit var favouriteFragment: FavouriteFragment
@@ -26,27 +29,7 @@ class MainActivity : DaggerAppCompatActivity() {
         nav_main.selectedItemId = R.id.nav_home
         nav_main.setOnNavigationItemSelectedListener(NavigationListener())
 
-        showHomeFragment()
-    }
-
-    private fun showHomeFragment() {
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.fragment_container,
-                homeFragment,
-                HomeFragment.CLASS_NAME
-            )
-        fragmentTransaction.commit()
-    }
-
-    private fun showFavouriteFragment() {
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.fragment_container,
-                favouriteFragment,
-                FavouriteFragment.CLASS_NAME
-            )
-        fragmentTransaction.commit()
+        mainNavigator.showHomeFragment(R.id.fragment_container ,homeFragment ,supportFragmentManager)
     }
 
     //setting up bottom navigation menu
@@ -57,12 +40,12 @@ class MainActivity : DaggerAppCompatActivity() {
             when (menuItem.itemId) {
 
                 R.id.nav_home -> {
-                    showHomeFragment()
+                    mainNavigator.showHomeFragment(R.id.fragment_container ,homeFragment ,supportFragmentManager)
                     txt_main_title.text = resources.getText(R.string.home_title)
                 }
 
                 R.id.nav_favourite -> {
-                    showFavouriteFragment()
+                    mainNavigator.showFavouriteFragment(R.id.fragment_container ,favouriteFragment ,supportFragmentManager)
                     txt_main_title.text = resources.getText(R.string.favourite_title)
                 }
 

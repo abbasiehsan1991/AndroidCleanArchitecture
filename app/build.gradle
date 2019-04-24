@@ -41,6 +41,7 @@ dependencies {
     /*-----------------------/Kotlin\-------------------*/
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+
     /*-----------------------/Test Tools\-------------------*/
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

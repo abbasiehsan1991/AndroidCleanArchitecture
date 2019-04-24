@@ -12,7 +12,8 @@ import com.bumptech.glide.request.RequestOptions
 
 
 /**
- * Contains [BindingAdapter]s for the T list.
+ * Contains [BindingAdapter]s for the [T] list or
+ * Setting images into an [ImageView]
  */
 class BaseBindings {
 

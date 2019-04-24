@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="TextAppearance.detail.Title" parent="@style/TextAppearance.AppCompat.Large">
+        <item name="android:textSize">50sp</item>
+    </style>
+
 </resources>

@@ -1,6 +1,5 @@
 package codenevisha.com.cleanarchitecture.presenter.base
 
-import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
@@ -12,7 +11,6 @@ import codenevisha.ir.mvvmwithdagger.ui.SnackbarMessage
 import codenevisha.ir.mvvmwithdagger.ui.SnackbarUtils
 import dagger.android.support.DaggerFragment
 import dagger.android.support.HasSupportFragmentInjector
-import java.lang.reflect.ParameterizedType
 import javax.inject.Inject
 
 abstract class BaseFragment<V : BaseViewModel, B : ViewDataBinding> :
@@ -25,15 +23,13 @@ abstract class BaseFragment<V : BaseViewModel, B : ViewDataBinding> :
     @Inject
     override lateinit var viewModelFactory: ViewModelFactory
 
-/*
-    override val viewModel: V by lazy {
+    /*override val viewModel: V by lazy {
         @Suppress("UNCHECKED_CAST")
         ViewModelProviders.of(this, viewModelFactory).get(
             (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<V>
         )
     }
 */
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 

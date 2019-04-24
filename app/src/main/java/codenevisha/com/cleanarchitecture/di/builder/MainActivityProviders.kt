@@ -1,5 +1,6 @@
 package codenevisha.com.cleanarchitecture.di.builder
 
+import codenevisha.com.cleanarchitecture.presenter.detail.DetailFragment
 import codenevisha.com.cleanarchitecture.presenter.favourite.FavouriteFragment
 import codenevisha.com.cleanarchitecture.presenter.home.HomeFragment
 import dagger.Module
@@ -18,5 +19,4 @@ abstract class MainActivityProviders{
 
     @ContributesAndroidInjector(modules = [ViewModelBuilder::class])
     abstract fun provideFavouriteFragment(): FavouriteFragment
-
 }

@@ -3,7 +3,7 @@ package codenevisha.com.cleanarchitecture.presenter.home
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import codenevisha.com.cleanarchitecture.domain.model.*
-import codenevisha.com.cleanarchitecture.domain.usecase.home.GetArticleListUseCase
+import codenevisha.com.cleanarchitecture.domain.usecase.article.GetArticleListUseCase
 import codenevisha.com.cleanarchitecture.presenter.base.BaseViewModel
 import codenevisha.com.cleanarchitecture.presenter.util.ELog
 import javax.inject.Inject
@@ -39,7 +39,8 @@ class HomeViewModel @Inject constructor(
 
             is SuccessResponse -> {
 
-                ELog.d(TAG, "RESPONSE size [${response.value.articles?.size}]")
+                ELog.print(ELog.Level.D, TAG, "RESPONSE size [${response.value.articles?.size}]")
+
                 empty.value = response.value.articles?.isNullOrEmpty()!!
 
                 response.value.articles?.let {

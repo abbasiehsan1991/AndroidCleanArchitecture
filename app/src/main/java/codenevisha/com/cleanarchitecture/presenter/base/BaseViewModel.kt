@@ -33,7 +33,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
      */
     class TokenExpired : () -> Unit {
         override fun invoke() {
-            ELog.d(TAG , "User's token is expired.")
+            ELog.print(ELog.Level.D , TAG , "User's token is expired.")
         }
     }
 }
