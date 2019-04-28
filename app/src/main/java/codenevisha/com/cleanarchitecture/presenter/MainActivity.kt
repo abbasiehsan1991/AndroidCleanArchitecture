@@ -58,6 +58,7 @@ class MainActivity : DaggerAppCompatActivity() {
                     txt_main_title.text = resources.getText(R.string.profile_title)
                     //txtToolbarSumTransaction.setVisibility(View.GONE)
                 }
+
             }
 
             return true
