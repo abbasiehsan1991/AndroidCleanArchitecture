@@ -1,6 +1,8 @@
 package codenevisha.com.cleanarchitecture.presenter.base
 
 import android.databinding.BindingAdapter
+import android.graphics.drawable.Drawable
+import android.support.constraint.Placeholder
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.widget.ImageView
@@ -36,12 +38,13 @@ class BaseBindings {
         }
 
         @JvmStatic
-        @BindingAdapter("app:loadImage")
-        fun setImageResource(view: ImageView, imageUrl: String?) {
+        @BindingAdapter("app:loadImage" , "app:placeHolder" , requireAll = false)
+        fun setImageResource(view: ImageView, imageUrl: String? , placeholder: Drawable) {
 
             val context = view.context
 
             val options = RequestOptions()
+                .placeholder(placeholder)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
 
 

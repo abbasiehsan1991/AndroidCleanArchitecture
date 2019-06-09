@@ -32,6 +32,7 @@ data class Article(
     @SerializedName("content") var content: String?,
     @Embedded
     @SerializedName("source") var source: Source
+
 ) : Parcelable {
     var atricleAuthor = "Author: $author"
 }

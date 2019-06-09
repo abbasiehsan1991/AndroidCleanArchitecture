@@ -33,6 +33,7 @@
 
                 <ImageView
                         app:loadImage="@{item.urlToImage}"
+                        app:placeHolder="@{@drawable/default_placeholder}"
                         android:id="@+id/img_icon"
                         android:layout_width="match_parent"
                         android:layout_height="140dp"

@@ -4,7 +4,8 @@
     <data>
 
         <import type="android.view.View"/>
-        <variable name="viewmodel" type="codenevisha.com.cleanarchitecture.presenter.home.HomeViewModel"/>
+        <variable name="viewmodel"
+                  type="codenevisha.com.cleanarchitecture.presenter.home.HomeViewModel"/>
 
     </data>
 
