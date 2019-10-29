@@ -4,7 +4,7 @@ This Repo is created based on **NewsApi** API.
 This is simple Android application that created with The Clean Architecture and MVVM pattern for it's presentation layer.
 
 There is 3 layer for this android application:
-1.  Presenter
+1.  Presentation
 2.  Data 
 3.  Domain
 
