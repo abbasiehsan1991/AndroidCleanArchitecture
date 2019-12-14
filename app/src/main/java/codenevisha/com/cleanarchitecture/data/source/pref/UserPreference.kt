@@ -12,6 +12,9 @@ class UserPreference(val name: String) : DefaultPreference(name) {
 
         //KEYS
         const val KEY_USER_NAME = "USER_NAME"
+
+        //Defaults
+        const val DEFAULT_USER_NAME = ""
     }
 
 }

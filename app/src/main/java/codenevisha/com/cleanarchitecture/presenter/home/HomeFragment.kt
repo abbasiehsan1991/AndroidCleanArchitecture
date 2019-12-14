@@ -54,7 +54,6 @@ class HomeFragment @Inject constructor() : BaseFragment<@Inject HomeViewModel, F
         super.onViewInitialized(binding)
 
         binding.viewmodel = viewModel
-        viewModel.onStart()
 
         prepareRvHome()
 
