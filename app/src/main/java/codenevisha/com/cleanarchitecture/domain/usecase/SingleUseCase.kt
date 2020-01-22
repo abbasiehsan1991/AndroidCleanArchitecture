@@ -16,8 +16,7 @@ abstract class SingleUseCase<T>(val cloudErrorMapper: CloudErrorMapper) : BaseUs
     fun execute(
 
         compositeDisposable: CompositeDisposable,
-        onResponse: ((UseCaseResponse<T>) -> Unit),
-        onTokenExpire: (() -> Unit)? = null
+        onResponse: ((UseCaseResponse<T>) -> Unit)
 
     ): Disposable {
 
@@ -36,9 +35,6 @@ abstract class SingleUseCase<T>(val cloudErrorMapper: CloudErrorMapper) : BaseUs
                    // Log.d(TAG, "On Error [$it]")
 
                     val error: ErrorModel = cloudErrorMapper.mapToDomainErrorException(it)
-
-                    if (ErrorStatus.UNAUTHORIZED == error.errorStatus)
-                        onTokenExpire?.invoke()
 
                     onResponse(ErrorResponse(error))
                 }

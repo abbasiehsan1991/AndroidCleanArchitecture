@@ -38,15 +38,15 @@ class BaseBindings {
         }
 
         @JvmStatic
-        @BindingAdapter("app:loadImage" , "app:placeHolder" , requireAll = false)
-        fun setImageResource(view: ImageView, imageUrl: String? , placeholder: Drawable) {
+        @BindingAdapter("app:loadImage", "app:placeHolder", requireAll = false)
+        fun setImageResource(view: ImageView, imageUrl: String?, placeholder: Drawable?) {
 
             val context = view.context
 
             val options = RequestOptions()
-                .placeholder(placeholder)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
 
+            placeholder?.let { options.placeholder(placeholder) }
 
             imageUrl?.let {
 

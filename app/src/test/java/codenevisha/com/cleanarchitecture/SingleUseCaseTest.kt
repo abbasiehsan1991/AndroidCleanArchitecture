@@ -50,7 +50,7 @@ class SingleUseCaseTest {
         whenever(singleUseCase.execute()).thenReturn(testSingle)
 
         // WHEN
-        val disposable = singleUseCase.execute(compositeDisposable, onResponse, onTokenExpire)
+        val disposable = singleUseCase.execute(compositeDisposable, onResponse)
 
         // THEN
         verify(onResponse).invoke(SuccessResponse(mockedResponse))
@@ -72,36 +72,11 @@ class SingleUseCaseTest {
         whenever(singleUseCase.execute()).thenReturn(testSingle)
 
         // WHEN
-        val disposable = singleUseCase.execute(compositeDisposable, onResponse, onTokenExpire)
+        val disposable = singleUseCase.execute(compositeDisposable, onResponse)
 
         // THEN
         verify(onResponse).invoke(ErrorResponse(mockedError))
         verify(onTokenExpire, never()).invoke()
-        verify(compositeDisposable).add(disposable)
-    }
-
-    @Test
-    fun `execute use case should invoke onTokenExpire callback if an unauthorized error happened`() {
-
-        // GIVEN
-        val t = com.nhaarman.mockito_kotlin.mock<Throwable>()
-        val mockedError = com.nhaarman.mockito_kotlin.mock<ErrorModel>()
-
-        whenever(mockedError.errorStatus).thenReturn(ErrorStatus.UNAUTHORIZED)
-        whenever(errorUtil.mapToDomainErrorException(t)).thenReturn(mockedError)
-
-        val testSingle = Single.error<Any>(t)
-        val singleUseCase = com.nhaarman.mockito_kotlin.mock<SingleUseCase<Any>>(defaultAnswer = Mockito.CALLS_REAL_METHODS)
-
-        whenever(singleUseCase.cloudErrorMapper).thenReturn(errorUtil)
-        whenever(singleUseCase.execute()).thenReturn(testSingle)
-
-        // WHEN
-        val disposable = singleUseCase.execute(compositeDisposable, onResponse, onTokenExpire)
-
-        // THEN
-        verify(onResponse).invoke(ErrorResponse(mockedError))
-        verify(onTokenExpire).invoke()
         verify(compositeDisposable).add(disposable)
     }
 }
